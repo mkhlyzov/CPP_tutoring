@@ -1,5 +1,10 @@
-*
-!*.DS_Store
-!*.o
-!*.*
-!*/
+
+**/.DS_Store
+.DS_Store
+
+**/*
+!**/*.*
+
+./PR
+./Tests
+**/*.pdf
