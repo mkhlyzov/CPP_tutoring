@@ -18,7 +18,6 @@ double Property::pct_area(const std::vector<Type> &types) const{
 		total_area += room.getArea();
 		if (room.usable_as(types)) valid_area += room.getArea();
 	}
-
 	return (static_cast<double>(valid_area) / total_area);
 }
 
@@ -71,6 +70,59 @@ void Property::reorder(const std::vector<Type> &my_types){
 
 // [address:{listofrooms}],e.g.:
 // [Hugogasse12:{[54sqm living room], [13 sqm kitchen], [10 sqm bathroom]}]
+void Property:: reorder1(const std::vector<Type>& my_types)
+{
+	// std::vector<Type> type_names = {};
+	std::vector<Room> sorted;
+
+	// std::cout << "my_type(0)==LR: " <<
+	// 	(my_types.at(0) == this->rooms) 
+	// 	<< std::endl << std::endl;
+	// std::vector<Room> temp{};
+	// int count{0};
+	// for(size_t i{0}; i < my_types.size(); i++)
+	// 	{
+	// 		for(size_t j{0}; j < rooms.size(); j++)
+	// 		{
+	// 			if(rooms.at(j).getType()== my_types.at(i))
+	// 			count++;
+	// 		}
+	// 		if(count < 1)
+	// 		rooms.push_back()
+	// 	}
+	// Type::Livingroom
+
+	for(const auto& v: my_types){
+   		std::cout << v  << " ";
+	}
+  	std::cout << "\n";
+  	for(const auto& w: rooms){
+   		std::cout << w << ", ";
+  	}
+  	std::cout << "\n";
+  	// Bedroom Livingroom
+  	std::vector<Room> rooms_bedroom;
+  	std::vector<Room> rooms_rest;
+  	for(const auto& w: rooms){
+   		if(w.getType() == Type:: Bedroom)
+   			rooms_bedroom.push_back(w);
+   		else
+   			rooms_rest.push_back(w);
+  	}
+  	std::cout << "\n------------" << std::endl;
+  
+  	std::vector<Room> temp;
+  	temp.insert(temp.end(),rooms_bedroom.begin(),rooms_bedroom.end());
+  
+  	temp.insert(temp.end(),rooms_rest.begin(),rooms_rest.end());
+  	for(const auto& c: temp){
+		std::cout << c << ", ";
+	}
+  	std::cout << "\n";
+  	rooms = temp;
+}  
+
+
 std::ostream& operator<<(std::ostream& o, const Property& p){
 	o << "[" << p.address << ":{";
 	for (size_t i = 0; i < p.rooms.size(); i++){

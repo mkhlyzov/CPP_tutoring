@@ -19,6 +19,7 @@ public:
 	double pct_area(const std::vector<Type> &types) const;
 	bool is_luxurious() const;
 	void reorder (const std::vector<Type> &my_types);
+	void reorder1(const std::vector<Type> &my_types);
 };
 
 #endif
