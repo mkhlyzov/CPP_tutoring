@@ -86,6 +86,11 @@ int main()
     std::cout << s5 << std::endl; // g3 g3 g1 g1 g2 g2 g2
     std::cout << "Test 8 passed" << std::endl;
 
+    // Test 9
+    Schrank s6(10, {g1, g1, g2, g2, g2});
+    assert (s6.add({g3, g3, g3, g4, g6, g2, g3}) == false);
+    std::cout << "Test 9 passed" << std::endl;
+
     // cout << s1.add({g4});
     // cout << s1 << endl;
 }
