@@ -17,12 +17,12 @@ Schrank::Schrank(size_t max_engine, const vector<Garment> &garments) : max_engin
   int i{0}, j{0}, k{0}, l{0};
   for (const auto &a : garments)
   {
-//     class Garment
-// 
-//     int preis;
-//     Color farbe;
-//     Type type;   <-----
-   switch (static_cast<int>(a.get_type())) // Garment g1(12, Color::Red, Type::Pants);    // значения из ограниченного набора (всего 4)
+    //     class Garment
+    //
+    //     int preis;
+    //     Color farbe;
+    //     Type type;   <-----
+    switch (static_cast<int>(a.get_type())) // Garment g1(12, Color::Red, Type::Pants);    // значения из ограниченного набора (всего 4)
     //  a.type имеет тип Type, но можно сконвертировать в integer с помощью static_cast
     //  static_cast<int>(a.type)   принимает значения 0...3
     //  a.type - приватная, так что мы используем a.get_type()
@@ -49,24 +49,33 @@ Schrank::Schrank(size_t max_engine, const vector<Garment> &garments) : max_engin
 
 bool Schrank::add(vector<Garment> new_garments)
 {
-  size_t count{0};
-  size_t count1{0};
-  for (size_t i{0}; i < garments.size(); i++)
+  // если хватает места на все вещи - добавляем все вещи, и return true
+  // не хватает места на все вещи - ничего не добавляем, и return false
+
+  // это требует:
+  // 1) умения проверять хватает ли места
+  // 2) умения добавлять все вещи в шкаф
+  size_t count{garments.size()};
+  size_t count1{new_garments.size()};
+
+  // if (a){
+  //   return
+  // }
+  // else {b}
+  // эквивалентно
+  // if (a) return
+  // b
+
+  if (count + count1 > 300)
   {
-    count = garments.size();
+    return false;
   }
 
-  for (size_t i{0}; i < new_garments.size(); i++)
+  for (size_t i{0}; i < new_garments.size(); ++i)
   {
-    count1 = new_garments.size();
+    garments.push_back(new_garments.at(i));
   }
-  for (size_t i{0}; i < new_garments.size(); i++)
-  {
-    if (count + count1 < 300)
-      garments.push_back(new_garments.at(i));
-    return true;
-  }
-  return false;
+  return true;
 }
 
 double Schrank::mean_price() const

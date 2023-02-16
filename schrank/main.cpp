@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <stdexcept>
+#include <cassert>
 
 #include "garment.h"
 #include "schrank.h"
@@ -75,8 +76,15 @@ int main()
         std::cout << "Test 7 passed" << std::endl;
     }
 
-    std::cout << "we reached this line!" << std::endl;
+    std::cout << "We passed constructor tests!" << std::endl;
+    std::cout << "Starting 'add' tests!" << std::endl;
 
+    // Test 8
+    Schrank s5(100, {g1, g1, g2});
+    std::cout << s5 << std::endl; // g1 g1 g2 g2 g2
+    assert (s5.add({g3, g3}) == true);
+    std::cout << s5 << std::endl; // g3 g3 g1 g1 g2 g2 g2
+    std::cout << "Test 8 passed" << std::endl;
 
     // cout << s1.add({g4});
     // cout << s1 << endl;
