@@ -31,7 +31,7 @@ bool Room::complies(const vector<Extra> &demands) const
     int count{0};
     for (size_t j{0}; j < extras.size(); j++)
     {
-      if (extras.at(j) == demands.at(j))
+      if (extras.at(j) == demands.at(i))
         count++;
     }
     if (count < 1)

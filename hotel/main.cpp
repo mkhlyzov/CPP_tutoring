@@ -78,6 +78,7 @@ int main()
   std::cout << h2 << std::endl;
   // bool accommodate(const vector<string> &persons, const vector<Extra> &demands);
   // const vector<string> extra_names {"WLAN","TV","BAR","VR","LARGE","GYM","SAUNA","ALLER"};
+
   assert(false == h2.accommodate({"Gabriel", "Daniel", "Francis"}, {Extra::WLAN, Extra::TV, Extra::BAR}));
   std::cout << "Test 10 passed\n";
   assert(true == h2.accommodate({"Gabriel"}, {Extra::WLAN, Extra::TV, Extra::BAR}));
@@ -90,4 +91,30 @@ int main()
   std::cout << "Test 14 passed\n";
   
   std::cout << h2 << std::endl;
+
+  // Testing accomodate
+  std::cout << "============Testing find==============" << std::endl;
+  // const vector<string> extra_names {"WLAN","TV","BAR","VR","LARGE","GYM","SAUNA","ALLER"};
+  Hotel h3("New Moon", {
+    Room(4, {Extra::WLAN, Extra::TV, Extra::BAR}, {}),
+    Room(4, {Extra::WLAN, Extra::TV, Extra::GYM}, {}),
+    Room(4, {Extra::WLAN, Extra::TV, Extra::BAR}, {}),
+    Room(4, {Extra::SAUNA, Extra::TV, Extra::BAR}, {}),
+    Room(4, {Extra::WLAN, Extra::ALLER, Extra::BAR}, {}),
+    Room(4, {Extra::WLAN, Extra::TV, Extra::BAR, Extra::GYM}, {})
+  });
+
+  std::vector<size_t> tmp{};
+  tmp = h3.find({Extra:: BAR, Extra:: GYM, Extra:: LARGE}); // {}
+  assert(tmp.empty());
+  std::cout << "Test 15 passed\n";
+
+  tmp = h3.find({Extra:: GYM}); // {1, 5}
+  assert(tmp.size() == 2 && tmp[0] == 1 && tmp[1] == 5);
+  std::cout << "Test 16 passed\n";
+
+  tmp = h3.find({Extra::WLAN, Extra::ALLER, Extra::BAR}); // {4}
+  assert(tmp.size() == 1 && tmp[0] == 4);
+  std::cout << "Test 17 passed\n";
+
 }

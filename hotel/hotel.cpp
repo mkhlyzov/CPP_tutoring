@@ -10,21 +10,51 @@ Hotel::Hotel(string name, const vector<Room> &rooms) : name{name}, rooms{rooms}
         throw runtime_error("belag ist leer");
 }
 
-bool Hotel:: accommodate(const vector<string>& persons, const vector<Extra>& demands)
+// Hotel h2("New Moon", {
+//     Room(4, {Extra::WLAN, Extra::TV, Extra::BAR}, {"A", "B", "C"}),
+//     Room(4, {Extra::WLAN, Extra::TV, Extra::GYM}, {"A", "B", "C"}),
+//     Room(4, {Extra::WLAN, Extra::TV, Extra::BAR}, {"A", "B", "C"})
+//   });
+// h2.accommodate({"Billy"}, {Extra::GYM})
+bool Hotel::accommodate(const vector<string> &persons, const vector<Extra> &demands)
 {
-    size_t count{rooms.size()};
-    size_t count1{persons.size()};
-    if(count < count1)
+    // пытается заселить людей в каждую комнату
+   
+    for (size_t i{0}; i < rooms.size(); i++)
+    {
+        // метод complies проверяет достаточно ли удобной является комната
+        // метод check_in пытается заселить людей
+        if (rooms.at(i).complies(demands) && rooms.at(i).check_in(persons))
+            return true;
+    }
     return false;
-    else
-    rooms.push_back(persons);
+    
+    //==========================
+    // пытается заселить тольк ов первую комнату
+    /*
+    for (size_t i{0}; i < rooms.size(); i++)
+    {
+        // метод complies проверяет достаточно ли удобной является комната
+        // метод check_in пытается заселить людей
+        if (rooms.at(i).complies(demands) && rooms.at(i).check_in(persons))
+            return true;
+        else
+            return false;
+    }
     return true;
-    if()
+    */
 }
-vector<size_t> Hotel:: find(const vector<Extra>& demands) const
+vector<size_t> Hotel::find(const vector<Extra> &demands) const
 {
-    return {};
+    vector<size_t> temp{};
+    for(size_t i{0}; i < rooms.size(); i++)
+    {
+      if(rooms.at(i).complies(demands))
+      temp.push_back(static_cast<size_t>(i));
+    } 
+    return temp;
 }
+
 ostream &operator<<(ostream &o, const Hotel &h)
 {
     o << "[" << h.name << " {";
