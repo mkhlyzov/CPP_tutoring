@@ -66,7 +66,7 @@ bool Schrank::add(vector<Garment> new_garments)
   // if (a) return
   // b
 
-  if (count < count1)
+  if (count < count + count1)
   {
     return false;
   }

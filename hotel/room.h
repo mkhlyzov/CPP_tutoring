@@ -15,6 +15,10 @@ class Room
  int size;
  vector<Extra> extras;
  vector<string> guests;
+ public:
+ Room(int,const vector<Extra>& extras = {}, const vector<string>& guests = {});
+ bool complies(const vector<Extra>& demands)const;
+ bool check_in(const vector<string>& persons);
  friend ostream& operator<<(ostream& o,const Room& r);
 };
 
