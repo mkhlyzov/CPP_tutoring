@@ -58,9 +58,23 @@ int main()
     {
         cout << "Test 10 passed\n";
     }
-     
+    // Test add_line
     f1.add_line(b7);
     cout << f1 << endl;
+    // Test stops_at    
+    for (Bus b : f1.stops_at(Station:: G)){
+        cout << b << ", ";
+    }
+    cout << endl;
+    
+    for (Bus b : f1.stops_at(Station:: K)){
+        cout << b << ", ";
+    }
+    cout << endl;
 
+    for (Bus b : f1.stops_at(Station:: D)){
+        cout << b << ", ";
+    }
+    cout << endl;
     return 0;
 }
