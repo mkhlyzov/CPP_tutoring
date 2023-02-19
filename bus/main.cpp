@@ -58,8 +58,9 @@ int main()
     {
         cout << "Test 10 passed\n";
     }
-    
-
+     
+    f1.add_line(b7);
+    cout << f1 << endl;
 
     return 0;
 }

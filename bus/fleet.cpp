@@ -17,7 +17,13 @@ void Fleet::add_line(const Bus & z)
 }
 
 vector<Bus> Fleet::stops_at(Station s) const{
-    return {};
+    vector<Bus> temp{};
+    for(size_t i{0}; i < busses.size(); i++)
+    {
+        if(busses.at(i).stops_at(s))
+        temp.push_back(busses.at(i));
+    }
+    return temp;
 }
 
 // [Besitzername {Liste der Busse}], z.B.:
