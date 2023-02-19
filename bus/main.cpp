@@ -1,5 +1,6 @@
 #include <iostream>
 #include "bus.h"
+#include "fleet.h"
 
 
 // const vector<string> names{"A", "B", "C", "D", "E", "F", "G", "K", "L"};
@@ -37,6 +38,28 @@ int main()
     Bus b3("404", 10, {Station::B, Station::D, Station::L, Station::A});
     assert(b3.cost(Station:: B, Station:: A) == 30);
     cout << "Test 9 passed\n";
+
+
+    // Testing Fleet
+    cout << "Fleet tests ========================\n";
+    Bus b4("404", 10, {Station::A, Station::B, Station::C, Station::D});
+    Bus b5("405", 10, {Station::B, Station::C, Station::D, Station::E});
+    Bus b6("406", 10, {Station::C, Station::D, Station::E, Station::F});
+    Bus b7("407", 10, {Station::D, Station::E, Station::F, Station::G});
+    Bus b8("408", 10, {Station::E, Station::F, Station::G, Station::K});
+    
+    Fleet f1("Bob", {b4,b5, b6});
+    cout << f1 << endl;
+    try
+    {    Fleet f2("", {b4,b5, b6});
+        cout << "Test 10 failed" << endl;
+    }
+    catch(const std::runtime_error& e)
+    {
+        cout << "Test 10 passed\n";
+    }
+    
+
 
     return 0;
 }
